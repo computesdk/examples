@@ -1,3 +1,6 @@
+Deploy this example with Vercel:
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fcomputesdk%2Fexamples%2Ftree%2Fmain%2Fvercel-basic)
+
 This simple Next.js app shows you how to use ComputeSDK to create sandboxes with Vercel and run a simple Vite app inside of the sandbox.
 We used Vercel for this example, but you can use any cloud provider (Daytona.io, Modal, E2B, Blaxel, CodeSandbox, Railway).
 Go here for the [step-by-step instructions](https://www.computesdk.com/blog/how-to-run-your-first-vercel-sandbox/).
