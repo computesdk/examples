@@ -1,4 +1,13 @@
-# React + TypeScript + Vite
+# ComputeSDK -> Railway Sandbox
+
+## React + TypeScript + Vite
+
+This is a basic React + Typescript + Vite template that uses [ComputeSDK](https://www.computesdk.com/) to create a sandbox in Railway and run a basic Vite app inside of the sandbox.
+
+1. Add COMPUTESDK_API_KEY to environment variables.
+2. Add RAILWAY_API_KEY + RAILWAY_PROJECT_ID + RAILWAY_ENVIRONMENT_ID to environment variables
+3. Start locally with 'npm run dev'
+4. Click "Create Railway Sandbox" at localhost:5173
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
