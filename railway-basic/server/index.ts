@@ -1,6 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-import WebSocket from 'ws';
 import { compute } from 'computesdk';
 import 'dotenv/config';
 
@@ -16,7 +15,7 @@ app.get('/', (req, res) => {
 
 app.post('/api/sandbox', async (_req, res) => {
   try {
-    // use explicit mode for env variables & websocket
+    // use *optional* explicit mode for env variables
     compute.setConfig({
       computesdkApiKey: process.env.COMPUTESDK_API_KEY!,
       provider: 'railway',
@@ -25,7 +24,6 @@ app.post('/api/sandbox', async (_req, res) => {
         projectId: process.env.RAILWAY_PROJECT_ID!,
         environmentId: process.env.RAILWAY_ENVIRONMENT_ID!,
       },
-      WebSocket,
     });
 
     // Create sandbox
