@@ -95,6 +95,6 @@ app.get('*', (_req, res) => {
   res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
 });
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on 0.0.0.0:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server running on port:${PORT}`);
 });
