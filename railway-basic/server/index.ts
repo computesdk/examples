@@ -55,14 +55,18 @@ export default defineConfig({
     await sandbox.filesystem.writeFile('app/vite.config.js', viteConfig);
 
     // Install dependencies
-    const installResult = await sandbox.runCommand('cd app && npm install');
+    const installResult = await sandbox.runCommand('npm install', {
+      cwd: 'app'
+    });
     console.log('npm install exit code:', installResult.exitCode);
     console.log('npm install stdout:', installResult.stdout);
     if (installResult.stderr)
       console.log('npm install stderr:', installResult.stderr);
 
     // Start dev server
-    sandbox.runCommand('cd app && npm run dev > vite.log 2>&1');
+    sandbox.runCommand('npm run dev > vite.log 2>&1', {
+      cwd: 'app'
+    });
     console.log('Dev server started in background');
 
     // Get preview URL
