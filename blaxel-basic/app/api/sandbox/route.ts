@@ -26,7 +26,7 @@ export async function POST() {
         port: 5173,
         strictPort: true,
         hmr: false,
-        allowedHosts: ['.blaxel.ai', 'localhost', '127.0.0.1', '.computesdk.com'],
+        allowedHosts: ['.blaxel.ai', '.bl.run.', 'localhost', '127.0.0.1', '.computesdk.com'],
         },
     })
     `;
