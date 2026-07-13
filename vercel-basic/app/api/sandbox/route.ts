@@ -1,9 +1,16 @@
 import { NextResponse } from 'next/server';
-import { compute } from 'computesdk';
+import { vercel } from '@computesdk/vercel';
+
+const compute = vercel({
+  token: process.env.VERCEL_TOKEN,
+  teamId: process.env.VERCEL_TEAM_ID,
+  projectId: process.env.VERCEL_PROJECT_ID,
+});
 
 export async function POST() {
 
-  const sandbox = await compute.sandbox.create();
+  // Vercel sandboxes only expose ports declared at creation time.
+  const sandbox = await compute.sandbox.create({ ports: [5173] });
 
   // Create basic Vite React app
   await sandbox.runCommand('npm create vite@5 app -- --template react');
@@ -19,27 +26,27 @@ export async function POST() {
       port: 5173,
       strictPort: true,
       hmr: false,
-      allowedHosts: ['.vercel.app', 'localhost', '127.0.0.1', '.computesdk.com'],
+      allowedHosts: ['.vercel.app', 'localhost', '127.0.0.1'],
     },
   })
   `;
   await sandbox.filesystem.writeFile('app/vite.config.js', viteConfig);
-  
+
   // Install dependencies
   await sandbox.runCommand('npm install', {
     cwd: 'app',
   })
-  
+
   // Start dev server
   sandbox.runCommand('npm run dev', {
     cwd: 'app',
   });
 
-  // Get preview URL
+  // Get preview URL (Vercel's own sandbox domain, not a ComputeSDK-branded one)
   const url = await sandbox.getUrl({ port: 5173 });
   console.log('previewUrl:', url)
 
-  return NextResponse.json({ 
+  return NextResponse.json({
     sandboxId: sandbox.sandboxId,
     url,
   });

@@ -24,34 +24,23 @@ function App() {
         </code>{' '}
         file and add your{' '}
         <code className="rounded text-blue-700 bg-gray-100 px-1 py-0.5 text-xs">
-          COMPUTESDK_API_KEY
-        </code>{' '}
-        +{' '}
-        <code className="rounded text-blue-700 bg-gray-100 px-1 py-0.5 text-xs">
-          RAILWAY_API_KEY + RAILWAY_PROJECT_ID + RAILWAY_ENVIRONMENT_ID
+          RAILWAY_API_TOKEN + RAILWAY_ENVIRONMENT_ID
         </code>{' '}
         variables to test.
       </p>
       <p className="mt-4 text-sm text-gray-800 text-center">
-        Then check the terminal for your sandbox preview URL to see your starter
-        Vite app running in your Railway sandbox!
+        Then check the server terminal — Railway sandboxes don't expose public
+        preview URLs, so this demo confirms the Vite dev server started by
+        curling it from inside the sandbox instead of opening it in a browser.
       </p>
       <div className="mt-8 flex gap-4">
         <a
-          href="https://console.computesdk.com/login?ref=stackblitz-railway-template"
+          href="https://railway.com/account/tokens"
           target="_blank"
           rel="noopener noreferrer"
           className="rounded bg-gray-200 px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-300"
         >
-          Get ComputeSDK API key
-        </a>
-        <a
-          href="https://railway.com?ref=computesdk-e2b-template"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="rounded bg-gray-200 px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-300"
-        >
-          Get Railway API key
+          Get Railway API token
         </a>
       </div>
     </div>

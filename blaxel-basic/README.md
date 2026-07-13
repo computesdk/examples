@@ -1,36 +1,38 @@
+A basic Next.js app that uses [ComputeSDK](https://github.com/computesdk/computesdk) to create a sandbox on [Blaxel](https://blaxel.ai) and run a Vite app inside it.
+
+See the full walkthrough at [computesdk.com/blog/how-to-run-a-blaxel-sandbox](https://www.computesdk.com/blog/how-to-run-a-blaxel-sandbox/).
+
+## Setup
+
+1. Copy `env.example` to `.env` and fill in your Blaxel credentials:
+
+   ```bash
+   BL_API_KEY=your_blaxel_api_key
+   BL_WORKSPACE=your_blaxel_workspace
+   ```
+
+   Create an account at [blaxel.ai](https://blaxel.ai), then create an API key and find your workspace ID in your workspace settings.
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Run the dev server:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) and click "Create Blaxel sandbox". This creates a sandbox on Blaxel, scaffolds a Vite React app inside it, starts its dev server, and returns a preview URL you can open in your browser.
+
+## How it works
+
+`app/api/sandbox/route.ts` imports the `blaxel` factory from `@computesdk/blaxel`, configures it with your API key and workspace, and calls `compute.sandbox.create()`. From there it uses ComputeSDK's universal `runCommand`, `filesystem.writeFile`, and `getUrl` methods — the same methods every ComputeSDK provider supports, so swapping to a different provider is a one-line import change.
+
+---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To learn more about Next.js, take a look at the [Next.js Documentation](https://nextjs.org/docs).

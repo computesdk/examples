@@ -1,32 +1,41 @@
 Deploy this example with Vercel:
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fcomputesdk%2Fexamples%2Ftree%2Fmain%2Fvercel-basic)
 
-This simple Next.js app shows you how to use ComputeSDK to create sandboxes with Vercel and run a simple Vite app inside of the sandbox.
-We used Vercel for this example, but you can use any cloud provider (Daytona.io, Modal, E2B, Blaxel, CodeSandbox, Railway).
+This simple Next.js app shows you how to use [ComputeSDK](https://github.com/computesdk/computesdk) to create sandboxes with Vercel and run a simple Vite app inside of the sandbox.
+We used Vercel for this example, but the same `runCommand`/`filesystem`/`getUrl` code works with any ComputeSDK provider (Daytona, Modal, E2B, Blaxel, CodeSandbox, and more) — just swap the import.
 Go here for the [step-by-step instructions](https://www.computesdk.com/blog/how-to-run-your-first-vercel-sandbox/).
 
-You will need to [register with ComputeSDK](https://console.computesdk.com/register) and generate an API key to create sandboxes.
-You will also need an API key from Vercel, Daytona, E2B, Blaxel, or some another one of our [supported providers](https://www.computesdk.com/docs/providers/more/).
+## Setup
+
+1. Copy `env.example` to `.env` and fill in your Vercel credentials — either a token/team/project trio, or `VERCEL_OIDC_TOKEN` via `vercel link && vercel env pull`:
+
+   ```bash
+   VERCEL_TOKEN=your_vercel_token
+   VERCEL_TEAM_ID=your_vercel_team_id
+   VERCEL_PROJECT_ID=your_vercel_project_id
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Run the dev server:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) and click "Create Vercel sandbox". This creates a sandbox on Vercel with port `5173` pre-declared, scaffolds a Vite React app inside it, starts its dev server, and returns a preview URL you can open in your browser.
+
+## How it works
+
+`app/api/sandbox/route.ts` imports the `vercel` factory from `@computesdk/vercel`, configures it with your credentials, and calls `compute.sandbox.create({ ports: [5173] })` — Vercel sandboxes only expose ports you declare up front, so this has to happen at creation time, not later when calling `getUrl()`. From there it uses ComputeSDK's universal `runCommand`, `filesystem.writeFile`, and `getUrl` methods.
+
+---
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 ## Learn More
 
